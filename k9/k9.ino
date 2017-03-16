@@ -7,12 +7,12 @@
 */
 #define packet_header 0xAC //the start of the packet
 #define DEBUG
-#define M1A_PWM 12
-#define M1A_Init 3
+#define M1A_PWM 3
+#define M1A_Init 12
 #define M1A_Break 9
 
-#define M1B_PWM 13
-#define M1B_Init 11
+#define M1B_PWM 11
+#define M1B_Init 13
 #define M1B_Break 8
 
 int packet_data[10] = {0,0,0,0,0,0,0,0,0,0} ;
