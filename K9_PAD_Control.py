@@ -1,7 +1,4 @@
 #!/usr/bin/env python
-# Written by alex@nyrpnz.com March 14 2012
-"Event echoer in Pygame."
-#import serial
 import pygame
 import time
 import serial
@@ -28,7 +25,7 @@ def translate(value, leftMin, leftMax, rightMin, rightMax):
     return rightMin + (valueScaled * rightSpan)
 
 def main():
-	ser = serial.Serial("/dev/ttyACM0",76800, timeout=0.1)
+	ser = serial.Serial("/dev/ttyACM0",115200, timeout=0.1)
 	pygame.init()
 	joysticks = []
 	Axes_value = [0,0,0,0,0,0] 
@@ -45,15 +42,10 @@ def main():
 				print "Received event 'Quit', exiting."
 				return
 			elif event.type == JOYAXISMOTION:
-				#axe = joysticks[event.joy].get_axis(0)
 				axis =  event.axis
 				value = event.value
 				scaled_value = int(translate(value, -1, 1, 0, 254))				
-				
-
 				Axes_value[axis] = scaled_value					
-
-		#print "0:"+str(Axes_value[0])+"\t1:"+str(Axes_value[1])+"\t2:"+str(Axes_value[2])+"\t3:"+str(Axes_value[3])+"\t4:"+str(Axes_value[4])+"\t5:"+str(Axes_value[5])
 		
 		frame = bytearray()
 		frame.append(0xAC)
