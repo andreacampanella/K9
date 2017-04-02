@@ -25,7 +25,7 @@ def translate(value, leftMin, leftMax, rightMin, rightMax):
     return rightMin + (valueScaled * rightSpan)
 
 def main():
-	ser = serial.Serial("/dev/ttyACM0",115200, timeout=0.1)
+	ser = serial.Serial("/dev/ttyS0",115200, timeout=0.1)
 	pygame.init()
 	joysticks = []
 	Axes_value = [0,0,0,0,0,0] 
@@ -50,8 +50,8 @@ def main():
 		frame = bytearray()
 		frame.append(0xAC)
 		frame.append(0x02)
-		frame.append(Axes_value[2])
-		frame.append(Axes_value[5])
+		frame.append(Axes_value[1])
+		frame.append(Axes_value[4])
 		frame.append(Checksum(frame))
 
 		print hex(frame[0])+" "+hex(frame[1])+" "+str(frame[2])+" "+str(frame[3])+" "+hex(frame[4])
